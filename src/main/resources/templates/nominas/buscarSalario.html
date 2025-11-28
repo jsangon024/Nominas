@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<section layout:fragment="contenido">
+
+    <h2>Buscar Salario por DNI</h2>
+
+    <form method="post" th:action="@{/nominas/buscarSalario}">
+        <label>DNI:</label>
+        <input type="text" name="dni" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div th:if="${mensaje}">
+        <p th:text="${mensaje}" style="color:red;"></p>
+    </div>
+
+    <div th:if="${nomina}">
+        <h3>Resultado:</h3>
+        <p><strong>DNI:</strong> <span th:text="${dni}"></span></p>
+        <p><strong>Salario:</strong> <span th:text="${nomina.salario} + ' €'"></span></p>
+        <p><strong>Fecha pago:</strong> <span th:text="${nomina.fecha}"></span></p>
+    </div>
+
+</section>
+
+</html>

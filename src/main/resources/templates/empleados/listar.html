@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<section layout:fragment="contenido">
+
+    <h2>Listado de Empleados</h2>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="emp : ${empleados}">
+            <td th:text="${emp.id}"></td>
+            <td th:text="${emp.nombre}"></td>
+            <td th:text="${emp.dni}"></td>
+
+            <td>
+                <a th:href="@{/empleados/editar/{id}(id=${emp.id})}">Editar</a> |
+                <a th:href="@{/empleados/eliminar(id=${emp.id})}"
+                   onclick="return confirm('¿Eliminar empleado?');">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<section layout:fragment="contenido">
+
+    <h2>Buscar Empleado por DNI</h2>
+
+    <form th:action="@{/empleados/buscar}" method="post">
+        <label>DNI:</label>
+        <input type="text" name="dni" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div th:if="${mensaje}">
+        <p th:text="${mensaje}" style="color:red;"></p>
+    </div>
+
+    <div th:if="${empleado}">
+        <h3>Empleado encontrado:</h3>
+
+        <p><strong>ID:</strong> <span th:text="${empleado.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${empleado.nombre}"></span></p>
+        <p><strong>DNI:</strong> <span th:text="${empleado.dni}"></span></p>
+
+        <a th:href="@{/empleados/editar/{id}(id=${empleado.id})}">Editar</a>
+
+    </div>
+
+</section>
+
+</html>

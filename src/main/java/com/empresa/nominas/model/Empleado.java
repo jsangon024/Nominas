@@ -1,0 +1,60 @@
+package com.empresa.nominas.model;
+
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "empleados")
+public class Empleado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(max = 100, message = "El nombre no puede superar 100 caracteres")
+    private String nombre;
+
+    @NotBlank(message = "El DNI no puede estar vacío")
+    @Pattern(regexp = "\\d{8}[A-Za-z]", message = "El DNI debe tener 8 números y una letra")
+    @Column(unique = true, length = 9)
+    private String dni;
+
+    // Constructores
+    public Empleado() {}
+
+    public Empleado(Integer id, String nombre, String dni) {
+        this.id = id;
+        this.nombre = nombre;
+        this.dni = dni;
+    }
+
+    // Getters y setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+}
+

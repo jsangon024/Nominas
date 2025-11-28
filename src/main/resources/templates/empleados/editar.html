@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<section layout:fragment="contenido">
+
+    <h2>Editar Empleado</h2>
+
+    <form th:action="@{/empleados/editar}" method="post" th:object="${empleado}">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}">
+        <br>
+
+        <label>DNI:</label>
+        <input type="text" th:field="*{dni}">
+        <br>
+
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <p th:if="${mensaje}" th:text="${mensaje}"></p>
+
+</section>
+
+</html>
